@@ -65,7 +65,8 @@ const Payment = ({ history }) => {
       const client_secret = data.client_secret;
 
       if (!stripe || !elements) return;
-
+      
+      //check the result from stripeApi
       const result = await stripe.confirmCardPayment(client_secret, {
         payment_method: {
           card: elements.getElement(CardNumberElement),
@@ -95,7 +96,7 @@ const Payment = ({ history }) => {
           };
 
           dispatch(createOrder(order));
-
+          //payment is successful the success route is directed
           history.push("/success");
         } else {
           alert.error("There's some issue while processing payment ");

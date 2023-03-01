@@ -7,6 +7,7 @@ import { Typography } from "@material-ui/core";
 import RemoveShoppingCartIcon from "@material-ui/icons/RemoveShoppingCart";
 import { Link } from "react-router-dom";
 
+//this component loads when we click on cart from profile icon
 const Cart = ({ history }) => {
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cart);
@@ -31,12 +32,15 @@ const Cart = ({ history }) => {
     dispatch(removeItemsFromCart(id));
   };
 
+  //redirect to shipping component
   const checkoutHandler = () => {
     history.push("/login?redirect=shipping");
   };
 
   return (
     <Fragment>
+      {/* //check if product is present in cart or not  */}
+
       {cartItems.length === 0 ? (
         <div className="emptyCart">
           <RemoveShoppingCartIcon />
@@ -52,7 +56,7 @@ const Cart = ({ history }) => {
               <p>Quantity</p>
               <p>Subtotal</p>
             </div>
-
+        {/* //iterating from cartItems   */}
             {cartItems &&
               cartItems.map((item) => (
                 <div className="cartContainer" key={item.product}>
