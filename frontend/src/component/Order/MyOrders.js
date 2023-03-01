@@ -57,6 +57,8 @@ const MyOrders = () => {
       sortable: false,
       renderCell: (params) => {
         return (
+          //direct to order details component when user user click on action
+          //after payment is successsful
           <Link to={`/order/${params.getValue(params.id, "id")}`}>
             <LaunchIcon />
           </Link>
@@ -93,6 +95,8 @@ const MyOrders = () => {
         <Loader />
       ) : (
         <div className="myOrdersPage">
+          
+          {/* //datagrid is used as table on orders page */}
           <DataGrid
             rows={rows}
             columns={columns}

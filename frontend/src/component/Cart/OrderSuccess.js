@@ -10,6 +10,8 @@ const OrderSuccess = () => {
       <CheckCircleIcon />
 
       <Typography>Your Order has been Placed successfully </Typography>
+      
+      {/* //direct to myOrders component */}
       <Link to="/orders">View Orders</Link>
     </div>
   );
