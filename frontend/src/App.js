@@ -43,11 +43,23 @@ import Contact from "./component/layout/Contact/Contact";
 import About from "./component/layout/About/About";
 import NotFound from "./component/layout/Not Found/NotFound";
 
+// Credentials
+
+// Admin : sidharth1713@gmail.com
+// Pass : password
+
+// User : sid17tiwari@yaya.com
+// Pass : Tiwari@123 
+
+// User : hi@hi.com
+// Pass : password
+
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
   const [stripeApiKey, setStripeApiKey] = useState("");
 
+  //accessing getStripeApiKey in App.js file so that key can be accessed
   async function getStripeApiKey() {
     const { data } = await axios.get("/api/v1/stripeapikey");
 
@@ -81,6 +93,7 @@ function App() {
       */}
       {isAuthenticated && <UserOptions user={user} />}
 
+      {/* //check if key is available then only direct to payment page  */}
       {stripeApiKey && (
         <Elements stripe={loadStripe(stripeApiKey)}>
           <ProtectedRoute exact path="/process/payment" component={Payment} />
