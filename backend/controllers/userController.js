@@ -40,8 +40,6 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
 exports.loginUser = catchAsyncErrors(async (req, res, next) => {
 
   // console.log(req.body);
-  const headers = req.headers['x-forwarded-host'];
-  console.log(headers)
   const { email, password } = req.body;
 
   // checking if user has given password and email both
