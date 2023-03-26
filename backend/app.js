@@ -30,11 +30,16 @@ app.use("/api/v1", user);
 app.use("/api/v1", order);
 app.use("/api/v1", payment);
 
-// app.use(express.static(path.join(__dirname, "../frontend/build")));
+// when we use frontend build
+// npm run build
+// __dirname: It is a local variable that returns the directory name of the current module.
+app.use(express.static(path.join(__dirname, "../frontend/build")));
 
-// app.get("*", (req, res) => {
-//   res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
-// });
+// for any url on backend server we load index.html from frontend build
+// so that we use backend url only while we deploy code ie port 4000 here
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
+});
 
 // Middleware for Errors
 app.use(errorMiddleware);

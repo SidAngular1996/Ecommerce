@@ -95,7 +95,10 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
   // saving the resetPasswordToken value now when forgotPassword is called
   await user.save({ validateBeforeSave: false });
 
-  const resetPasswordUrl = `${req.protocol}://${req.headers['x-forwarded-host']}/password/reset/${resetToken}`;
+  //req.headers['x-forwarded-host']} if you want to access host from frontend port
+  //req.headers['host']} if you want to access host from backend port
+  // because both backend and frontend are on different port
+  const resetPasswordUrl = `${req.protocol}://${req.headers['host']}/password/reset/${resetToken}`;
 
   const message = `Your password reset token is :- \n\n ${resetPasswordUrl} \n\nIf you have not requested this email then, please ignore it.`;
 

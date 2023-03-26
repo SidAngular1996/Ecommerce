@@ -43,3 +43,18 @@ _fill each filed with your info respectively_
 
 Siddharth Tiwari
 **Instagram** Click [Here](https://www.instagram.com/i.am.sid17)
+
+
+
+
+
+
+// DEPLOYMENT 
+
+we can delete build folder in frontend as when we deploy on heroku we give post build command in configuration
+which automatically takes care of build in frontend check root folder package file
+        
+        "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && npm install --prefix frontend && npm run build --prefix frontend"
+NPM_CONFIG_PRODUCTION=false - install dependencies
+npm install --prefix frontend - install frontend dependencies
+npm run build --prefix frontend - run build frontend path is given for same in backend 
