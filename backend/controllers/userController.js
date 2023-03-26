@@ -40,7 +40,8 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
 exports.loginUser = catchAsyncErrors(async (req, res, next) => {
 
   // console.log(req.body);
-
+  const headers = req.headers['x-forwarded-host'];
+  console.log(headers)
   const { email, password } = req.body;
 
   // checking if user has given password and email both
@@ -96,9 +97,7 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
   // saving the resetPasswordToken value now when forgotPassword is called
   await user.save({ validateBeforeSave: false });
 
-  const resetPasswordUrl = `${req.protocol}://${req.get(
-    "host"
-  )}/password/reset/${resetToken}`;
+  const resetPasswordUrl = `${req.protocol}://${req.headers['x-forwarded-host']}/password/reset/${resetToken}`;
 
   const message = `Your password reset token is :- \n\n ${resetPasswordUrl} \n\nIf you have not requested this email then, please ignore it.`;
 
@@ -128,7 +127,7 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 
 // Reset Password
 exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
-  // creating token hash
+  // creating token hash to find user since database has hash token
   const resetPasswordToken = crypto
     .createHash("sha256")
     .update(req.params.token)
@@ -149,7 +148,7 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
   }
 
   if (req.body.password !== req.body.confirmPassword) {
-    return next(new ErrorHander("Password does not password", 400));
+    return next(new ErrorHander("Password does not match", 400));
   }
 
   user.password = req.body.password;
