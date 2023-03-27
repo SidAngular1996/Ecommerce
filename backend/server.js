@@ -12,10 +12,10 @@ const connectDatabase = require("./config/database");
 
 // Config
 //dotenv env variable set
-dotenv.config({ path: "backend/config/config.env" })
-// if (process.env.NODE_ENV !== "PRODUCTION") {
-//   require("dotenv").config({ path: "backend/config/config.env" });
-// }
+// dotenv.config({ path: "backend/config/config.env" })
+if (process.env.NODE_ENV !== "PRODUCTION") {
+  require("dotenv").config({ path: "backend/config/config.env" });
+}
 
 // Connecting to database
 connectDatabase();
