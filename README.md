@@ -1,5 +1,9 @@
 # MERN E-COMMERCE TUTORIAL
 
+My demp - https://ecommerce-5o3iopzrv-sidangular1996.vercel.app/
+
+Resource--------
+
 Hi! My name is **Abhishek Singh**, I have created this tutorial to teach MERN Stack for free on YouTube.
 
 # Prerequisite
